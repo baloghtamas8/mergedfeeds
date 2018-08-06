@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tweets and Jokes{% endblock %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>number</th>
+            <th>source</th>
+            <th>time</th>
+            <th>message</th>
+        </tr>
+        {% for entry in messages %}
+            <tr>
+                <td>{{ loop.index }}.</td>
+                <td>{{ entry.feed_source }}</td>
+                <td>
+                    {% if entry.created_at is defined %}
+                        {{ entry.created_at|date("Y.m.d H:i") }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if entry.text is defined %}
+                        {{ entry.text }}
+                    {% elseif entry.joke is defined %}
+                        {{  entry.joke }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

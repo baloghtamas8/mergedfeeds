@@ -1,0 +1,13 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+app_messages:
+  path: /{handle1}/{handle2}/{method}
+  controller: App\Controller\MergedFeedsController::index
+  requirements:
+    handle1:  '\w+'
+    handle2:  '\w+'
+    method:   'mod|fib'
+  defaults:
+    method: 'fib'
